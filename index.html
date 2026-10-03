@@ -1,498 +1,270 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Ulang Tahun Artaya ke-2</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "Comic Sans MS", cursive, sans-serif;
-            min-height: 100vh;
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #ffd6e7, #e5d4ff, #c9f3ff);
-            color: #7b2cbf;
-        }
-
-        /* Background */
-        .container {
-            min-height: 100vh;
-            padding: 30px 15px 50px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Judul */
-        .judul {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .judul h1 {
-            font-size: 45px;
-            color: #ff4081;
-            text-shadow:
-                3px 3px 0 white,
-                5px 5px 0 #ff9ac2;
-            animation: muncul 1.5s ease;
-        }
-
-        .judul h2 {
-            font-size: 35px;
-            color: #7048e8;
-            margin-top: 5px;
-            text-shadow: 2px 2px white;
-        }
-
-        .umur {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 35px;
-            background: #ffcf56;
-            border: 5px solid white;
-            border-radius: 50px;
-            color: #e83e8c;
-            font-size: 35px;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            animation: goyang 2s infinite;
-        }
-
-        /* Nama */
-        .nama {
-            max-width: 850px;
-            margin: 25px auto;
-            padding: 15px 25px;
-            background: rgba(255,255,255,0.85);
-            border: 4px dashed #c77dff;
-            border-radius: 30px;
-            text-align: center;
-            font-size: 30px;
-            font-weight: bold;
-            color: #6a1b9a;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Foto */
-        .foto-box {
-            width: 340px;
-            height: 430px;
-            margin: 20px auto;
-            padding: 10px;
-            background: white;
-            border-radius: 30px;
-            box-shadow:
-                0 10px 30px rgba(0,0,0,0.25),
-                0 0 0 8px #ffb3d1;
-            position: relative;
-            z-index: 2;
-            animation: naik 1.5s ease;
-        }
-
-        .foto-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 22px;
-        }
-
-        /* Pesan */
-        .pesan {
-            max-width: 750px;
-            margin: 35px auto;
-            background: rgba(255,255,255,0.9);
-            border-radius: 35px;
-            padding: 30px;
-            text-align: center;
-            border: 4px solid #ff9ac2;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-            position: relative;
-            z-index: 2;
-        }
-
-        .pesan h3 {
-            color: #ff4081;
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
-
-        .pesan p {
-            font-family: Arial, sans-serif;
-            font-size: 20px;
-            line-height: 1.8;
-            color: #5f3b6d;
-        }
-
-        .love {
-            font-size: 35px;
-            margin-top: 15px;
-        }
-
-        /* Dekorasi */
-        .balon {
-            position: absolute;
-            width: 70px;
-            height: 85px;
-            border-radius: 50%;
-            z-index: 1;
-            animation: melayang 4s ease-in-out infinite;
-        }
-
-        .balon::after {
-            content: "";
-            position: absolute;
-            width: 2px;
-            height: 120px;
-            background: #777;
-            left: 50%;
-            top: 80px;
-        }
-
-        .balon1 {
-            background: #ff70a6;
-            left: 5%;
-            top: 12%;
-        }
-
-        .balon2 {
-            background: #70d6ff;
-            right: 5%;
-            top: 18%;
-            animation-delay: 1s;
-        }
-
-        .balon3 {
-            background: #ffd670;
-            left: 8%;
-            bottom: 15%;
-            animation-delay: 2s;
-        }
-
-        .balon4 {
-            background: #b388ff;
-            right: 8%;
-            bottom: 20%;
-            animation-delay: 1.5s;
-        }
-
-        /* Konfeti */
-        .confetti {
-            position: absolute;
-            width: 12px;
-            height: 25px;
-            animation: jatuh 5s linear infinite;
-        }
-
-        .c1 {
-            background: #ff4081;
-            left: 15%;
-            animation-delay: 0s;
-        }
-
-        .c2 {
-            background: #ffd43b;
-            left: 35%;
-            animation-delay: 1s;
-        }
-
-        .c3 {
-            background: #4dabf7;
-            left: 55%;
-            animation-delay: 2s;
-        }
-
-        .c4 {
-            background: #845ef7;
-            left: 75%;
-            animation-delay: 3s;
-        }
-
-        .c5 {
-            background: #51cf66;
-            left: 90%;
-            animation-delay: 1.5s;
-        }
-
-        /* Tombol */
-        .tombol {
-            text-align: center;
-            margin-top: 20px;
-            position: relative;
-            z-index: 3;
-        }
-
-        button {
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            background: #ff4081;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: 0.3s;
-        }
-
-        button:hover {
-            transform: scale(1.08);
-            background: #e91e63;
-        }
-
-        /* Animasi */
-        @keyframes muncul {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes naik {
-            from {
-                opacity: 0;
-                transform: translateY(80px) scale(0.8);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        @keyframes goyang {
-            0%, 100% {
-                transform: rotate(-3deg);
-            }
-
-            50% {
-                transform: rotate(3deg);
-            }
-        }
-
-        @keyframes melayang {
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-25px);
-            }
-        }
-
-        @keyframes jatuh {
-            0% {
-                top: -50px;
-                transform: rotate(0deg);
-            }
-
-            100% {
-                top: 110%;
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Tampilan HP */
-        @media (max-width: 600px) {
-
-            .judul h1 {
-                font-size: 32px;
-            }
-
-            .judul h2 {
-                font-size: 25px;
-            }
-
-            .umur {
-                font-size: 27px;
-            }
-
-            .nama {
-                font-size: 21px;
-            }
-
-            .foto-box {
-                width: 290px;
-                height: 370px;
-            }
-
-            .pesan h3 {
-                font-size: 25px;
-            }
-
-            .pesan p {
-                font-size: 17px;
-            }
-
-            .balon {
-                width: 45px;
-                height: 60px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Katalog digital kuliner lokal dan UMKM Kota Kupang, Nusa Tenggara Timur.">
+  <title>Kuliner Kupang | Jelajahi Cita Rasa Lokal</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <a class="skip-link" href="#konten">Lewati ke konten utama</a>
 
-    <div class="container">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#beranda" aria-label="Kuliner Kupang, kembali ke beranda">
+        <span class="brand-icon" aria-hidden="true">🍴</span>
+        <span>Kuliner <strong>Kupang</strong></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mainNav">☰</button>
+      <nav class="main-nav" id="mainNav" aria-label="Navigasi utama">
+        <a href="#beranda">Beranda</a>
+        <a href="#profil">Profil</a>
+        <a href="#kuliner">Kuliner</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#audio">Audio</a>
+        <a href="#lokasi">Lokasi</a>
+        <a href="#tentang">Tentang</a>
+      </nav>
+    </div>
+  </header>
 
-        <!-- Balon -->
-        <div class="balon balon1"></div>
-        <div class="balon balon2"></div>
-        <div class="balon balon3"></div>
-        <div class="balon balon4"></div>
+  <main id="konten">
+    <section class="hero section" id="beranda" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">JELAJAHI CITA RASA NUSA TENGGARA TIMUR</p>
+          <h1 id="hero-title">Kenali Kuliner,<br><span>Kenali Kupang.</span></h1>
+          <p class="hero-description">Temukan cerita makanan khas, galeri, audio, dan informasi lokasi kuliner serta UMKM di Kota Kupang.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#kuliner">Jelajahi Kuliner <span aria-hidden="true">→</span></a>
+            <a class="button button-outline" href="#lokasi">Cari Lokasi</a>
+          </div>
+          <div class="hero-note"><span aria-hidden="true">✦</span> Informasi kuliner dalam satu tempat</div>
+        </div>
+        <div class="hero-image-wrap">
+          <img class="hero-image" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85" alt="Hidangan makanan tersaji di atas meja" onerror="this.style.display='none';this.nextElementSibling.hidden=false">
+          <div class="image-fallback" hidden aria-hidden="true">🍲<br><span>Cita Rasa Lokal</span></div>
+          <div class="floating-card"><span class="floating-icon" aria-hidden="true">📍</span><span><strong>Kota Kupang</strong><small>Nusa Tenggara Timur</small></span></div>
+        </div>
+      </div>
+    </section>
 
-        <!-- Konfeti -->
-        <div class="confetti c1"></div>
-        <div class="confetti c2"></div>
-        <div class="confetti c3"></div>
-        <div class="confetti c4"></div>
-        <div class="confetti c5"></div>
+    <section class="section intro-section" id="profil" aria-labelledby="profil-title">
+      <div class="container two-column">
+        <div>
+          <p class="eyebrow">TENTANG KULINER KUPANG</p>
+          <h2 id="profil-title">Lebih dari sekadar makanan</h2>
+        </div>
+        <div>
+          <p>Kuliner adalah bagian dari cerita, kebiasaan, dan kehidupan masyarakat. Website ini menjadi katalog digital untuk mengenal makanan khas Nusa Tenggara Timur serta membantu pengunjung mencari informasi kuliner lokal.</p>
+          <p class="small-note">Catatan: deskripsi pada website ini merupakan pengenalan umum. Informasi pemilik usaha, harga, jam buka, dan alamat perlu diverifikasi langsung sebelum dipublikasikan.</p>
+        </div>
+      </div>
+    </section>
 
-        <!-- Judul -->
-        <div class="judul">
-            <h1>🎉 SELAMAT ULANG TAHUN 🎉</h1>
-
-            <h2>Untuk Putri Kecil Tersayang</h2>
-
-            <div class="umur">
-                🎂 KE-2 TAHUN 🎂
+    <section class="section section-soft" id="kuliner" aria-labelledby="kuliner-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">KATALOG PILIHAN</p>
+            <h2 id="kuliner-title">Jelajahi Kuliner</h2>
+            <p class="section-lead">Pilih kartu untuk membaca informasi dan membuka tautan terkait.</p>
+          </div>
+          <label class="search-box">
+            <span class="sr-only">Cari makanan</span>
+            <span aria-hidden="true">⌕</span>
+            <input type="search" id="searchInput" placeholder="Cari makanan..." autocomplete="off">
+          </label>
+        </div>
+        <p id="searchStatus" class="search-status" aria-live="polite"></p>
+        <div class="food-grid" id="foodGrid">
+          <article class="food-card" data-search="sei sapi se'i daging asap makanan khas">
+            <img src="se'i.jpg" alt="Hidangan daging panggang" loading="lazy">
+            <div class="food-card-body">
+              <span class="tag">Makanan</span>
+              <h3>Se'i Sapi</h3>
+              <p>Daging yang diolah dengan teknik pengasapan dan dikenal sebagai salah satu kuliner populer dari Nusa Tenggara Timur.</p>
+              <div class="card-links"><button class="text-button detail-button" data-food="sei">Lihat detail →</button><a href="#lokasi">Cari lokasi</a></div>
             </div>
-        </div>
-
-        <!-- Nama -->
-        <div class="nama">
-            💕 ARTAYA ELISABET CENDRAWSAI TUALAKA 💕
-        </div>
-
-        <!-- Foto -->
-        <div class="foto-box">
-            <img src="elisabet.jpeg"
-                 alt="Foto Artaya Elisabet Cendrawai Tualaka">
-        </div>
-
-        <!-- Pesan -->
-        <div class="pesan">
-
-            <h3>🎀 Happy Birthday Artaya 🎀</h3>
-
-            <p>
-                Selamat ulang tahun yang ke-2,
-                <b>Artaya Elisabet Cendrawasi Tualaka</b>! 🎂🎉
-            </p>
-
-            <br>
-
-            <p>
-                Semoga Artaya tumbuh menjadi anak yang sehat,
-                ceria, pintar, baik hati, dan selalu dikelilingi
-                oleh orang-orang yang menyayangi Artaya. 💕
-            </p>
-
-            <br>
-
-            <p>
-                Semoga setiap langkah kecilmu selalu diberikan
-                kebahagiaan, perlindungan, dan berkat dari Tuhan.
-                Jadilah anak yang selalu membawa senyum dan
-                kebahagiaan untuk keluarga. 🥰
-            </p>
-
-            <div class="love">
-                ❤️ 🧸 🎂 🎈 🎁 ❤️
+          </article>
+          <article class="food-card" data-search="jagung bose jagung kacang makanan tradisional">
+            <img src="bose.jpg" alt="Jagung sebagai bahan makanan" loading="lazy">
+            <div class="food-card-body">
+              <span class="tag">Tradisional</span>
+              <h3>Jagung Bose</h3>
+              <p>Hidangan berbahan dasar jagung yang dimasak bersama kacang-kacangan. Resep dapat berbeda menurut keluarga dan daerah.</p>
+              <div class="card-links"><button class="text-button detail-button" data-food="jagung">Lihat detail →</button><a href="#galeri">Lihat galeri</a></div>
             </div>
-
+          </article>
+          <article class="food-card" data-search="sambal luat lombok cabai sambal">
+            <img src="sambal luat.jpg" alt="Sajian makanan dengan bumbu" loading="lazy">
+            <div class="food-card-body">
+              <span class="tag">Pelengkap</span>
+              <h3>Sambal Lu'at</h3>
+              <p>Sambal segar yang sering menjadi pelengkap hidangan. Bahan dan tingkat kepedasannya dapat bervariasi.</p>
+              <div class="card-links"><button class="text-button detail-button" data-food="sambal">Lihat detail →</button><a href="#audio">Dengarkan</a></div>
+            </div>
+          </article>
+          <article class="food-card" data-search="jagung katemak sayur kacang makanan">
+            <img src="jagung katemak.jpg" alt="Hidangan sayuran dan bahan segar" loading="lazy">
+            <div class="food-card-body">
+              <span class="tag">Tradisional</span>
+              <h3>Katemak</h3>
+              <p>Hidangan rumahan yang dapat berisi jagung, kacang-kacangan, dan sayuran sesuai kebiasaan setempat.</p>
+              <div class="card-links"><button class="text-button detail-button" data-food="katemak">Lihat detail →</button><a href="#profil">Tentang kuliner</a></div>
+            </div>
+          </article>
         </div>
+        <div class="empty-state" id="emptyState" hidden>Tidak ada kuliner yang cocok dengan kata pencarian tersebut.</div>
+      </div>
+    </section>
 
-        <!-- Tombol -->
-        <div class="tombol">
-            <button onclick="ucapan()">
-                🎁 Klik Untuk Ucapan 🎁
-            </button>
+    <section class="section" id="galeri" aria-labelledby="galeri-title">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow">CERITA DALAM GAMBAR</p><h2 id="galeri-title">Galeri Kuliner</h2></div>
+          <p class="section-lead">berbagai foto kuliner</p>
         </div>
+        <div class="gallery-grid">
+          <figure class="gallery-item gallery-large"><img src="ANEKAN MAKANAN.png" alt="Aneka hidangan di atas meja" loading="lazy"><figcaption>Ragam hidangan</figcaption></figure>
+          <figure class="gallery-item"><img src="olahan daging sapi.jpg" alt="Hidangan daging panggang" loading="lazy"><figcaption>Olahan daging</figcaption></figure>
+          <figure class="gallery-item"><img src="BAHAN LOKAL.png" alt="Makanan dengan sayuran segar" loading="lazy"><figcaption>Bahan lokal</figcaption></figure>
+        </div>
+      </div>
+    </section>
 
+    <section class="section audio-section" id="audio" aria-labelledby="audio-title">
+      <div class="container audio-panel">
+        <div class="audio-icon" aria-hidden="true">♫</div>
+        <div class="audio-copy">
+          <p class="eyebrow">DENGARKAN INFORMASI</p>
+          <h2 id="audio-title">Audio Kuliner</h2>
+          <p>Tekan tombol untuk mendengarkan pengenalan singkat melalui fitur suara pada browser. Suara ini dibuat dengan text-to-speech, bukan rekaman penutur bahasa daerah.</p>
+          <div class="audio-actions">
+            <button class="button button-primary" id="speakButton" type="button">▶ Putar informasi</button>
+            <button class="button button-outline" id="stopSpeakButton" type="button">■ Hentikan</button>
+          </div>
+          <p id="audioStatus" class="small-note" aria-live="polite">Fitur suara membutuhkan browser yang mendukung text-to-speech.</p>
+          <details><summary>Baca transkrip audio</summary><p id="audioTranscript">Selamat datang di Kuliner Kupang. Melalui website ini, kamu dapat mengenal beragam kuliner dari Nusa Tenggara Timur, melihat galeri, dan mencari informasi lokasi usaha kuliner. Pastikan informasi usaha diperiksa sebelum berkunjung.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="lokasi" aria-labelledby="lokasi-title">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow">TEMUKAN DI SEKITARMU</p><h2 id="lokasi-title">Lokasi Kuliner</h2><p class="section-lead">Buka pencarian peta untuk menemukan warung dan UMKM kuliner di Kota Kupang.</p></div>
+        </div>
+        <div class="location-grid">
+          <article class="location-card">
+            <div class="location-symbol" aria-hidden="true">📍</div>
+            <div><h3>Kota Kupang</h3><p>Jelajahi tempat makan dan kuliner yang terdaftar di area Kota Kupang.</p><a class="button button-primary" href="https://www.google.com/maps/search/kuliner+di+Kota+Kupang/" target="_blank" rel="noopener noreferrer">Cari di Google Maps ↗</a></div>
+          </article>
+          <article class="location-card">
+            <div class="location-symbol" aria-hidden="true">🍽️</div>
+            <div><h3>Warung Lokal</h3><p>Gunakan pencarian peta untuk melihat warung lokal di sekitar tujuanmu.</p><a class="button button-primary" href="https://www.google.com/maps/search/warung+makan+Kupang/" target="_blank" rel="noopener noreferrer">Cari warung ↗</a></div>
+          </article>
+          <article class="location-card">
+            <div class="location-symbol" aria-hidden="true">🧺</div>
+            <div><h3>UMKM Kuliner</h3><p>Temukan usaha kuliner lokal dan periksa jam buka serta alamat sebelum datang.</p><a class="button button-primary" href="https://www.google.com/maps/search/UMKM+kuliner+Kupang/" target="_blank" rel="noopener noreferrer">Cari UMKM ↗</a></div>
+          </article>
+        </div>
+        <p class="small-note">Peta akan membuka situs Google Maps. Website contoh ini belum menyimpan lokasi UMKM secara langsung; hasil pencarian dapat berubah sesuai data peta.</p>
+      </div>
+    </section>
+
+    <section class="section" id="sitemap" aria-labelledby="sitemap-title">
+      <div class="container sitemap-panel">
+        <div><p class="eyebrow">JANGAN TERSesat</p><h2 id="sitemap-title">Sitemap Website</h2><p>Gunakan daftar ini untuk berpindah ke bagian mana pun tanpa harus mengikuti urutan tertentu.</p></div>
+        <div class="sitemap-links">
+          <a href="#beranda">⌂ Beranda</a><a href="#profil">Profil Kuliner</a><a href="#kuliner">Makanan Khas</a><a href="#galeri">Galeri Foto</a><a href="#audio">Audio Kuliner</a><a href="#lokasi">Peta Lokasi</a><a href="#tentang">Tentang Proyek</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="tentang" aria-labelledby="tentang-title">
+      <div class="container about-grid">
+        <div><p class="eyebrow">TENTANG PROYEK</p><h2 id="tentang-title">Teknologi untuk memperkenalkan budaya lokal</h2></div>
+        <div><p>Kuliner Kupang merupakan contoh proyek Mini OBE tentang arsitektur hypermedia interaktif. Tautan menghubungkan halaman profil, katalog, galeri, audio, dan lokasi.</p><p>Pengembangan selanjutnya dapat mencakup OCR untuk membaca menu dari foto, penerjemahan berbantuan AI, dan text-to-speech. Hasil AI perlu diperiksa manusia agar informasi tetap akurat.</p><p class="small-note">Dibuat untuk keperluan pembelajaran. Data usaha, foto, harga, dan alamat harus diperiksa serta dilengkapi oleh pengelola.</p></div>
+      </div>
+      <div class="upload-box">
+        <p>
+          Laporan perancangan website multimedia
+        </p>
+        <div class="pdf-container">
+          <iframe
+                src="LAPORAN PERANCANGAN WEBSITE MULTIMEDIA kelompok 7.pdf"
+                width="100%"
+                height="600px"
+                style="border: none; border-radius: 15px;">
+              </iframe>
+              src="LAPORAN PERANCANGAN WEBSITE MULTIMEDIA kelompok7"
+            width="100%"
+            height="600px"
+            style="border: none; border-radius: 15px;">
+        </iframe>
     </div>
 
-    <script>
+    <div style="margin-top: 20px;">
+        <a
+            href="LAPORAN PERANCANGAN WEBSITE MULTIMEDIA kelompok 7.pdf"
+            target="_blank"
+            class="upload-label"
+            style="text-decoration: none; display: inline-block;">
+            📖 Buka PDF
+        </a>
 
-        function ucapan() {
+        <a
+            href="LAPORAN PERANCANGAN WEBSITE MULTIMEDIA kelompok 7.pdf"
+            download
+            class="upload-label"
+            style="text-decoration: none; display: inline-block;">
+            📥 Download PDF
+        </a>
+    </div>
 
-            alert(
-                "🎉 HAPPY BIRTHDAY ARTAYA! 🎉\n\n" +
-                "Selamat ulang tahun yang ke-2! 🎂\n\n" +
-                "Semoga Artaya selalu sehat, ceria, pintar, " +
-                "dan tumbuh menjadi anak yang penuh kasih sayang. ❤️\n\n" +
-                "Tuhan selalu memberkati dan menjaga Artaya. 🙏💕"
-            );
+</div>
 
-            // Membuat konfeti tambahan
-            for (let i = 0; i < 50; i++) {
+📖 Buka PDF di Tab Baru
 
-                let confetti = document.createElement("div");
+</a>
 
-                confetti.style.position = "fixed";
-                confetti.style.width = "10px";
-                confetti.style.height = "20px";
+</div>
 
-                confetti.style.left =
-                    Math.random() * 100 + "vw";
+</div>
 
-                confetti.style.top = "-20px";
+</div>
 
-                confetti.style.background =
-                    ["#ff4081",
-                     "#ffd43b",
-                     "#4dabf7",
-                     "#845ef7",
-                     "#51cf66"][Math.floor(Math.random() * 5)];
+</div>
 
-                confetti.style.zIndex = "999";
+</section>
+        </div>
+      </div>
+    </section>
+  </main>
 
-                confetti.style.transform =
-                    "rotate(" + Math.random() * 360 + "deg)";
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand footer-brand" href="#beranda"><span aria-hidden="true">🍴</span><span>Kuliner <strong>Kupang</strong></span></a>
+      <p>© <span id="year"></span> Kuliner Kupang · Proyek Mini OBE</p>
+      <a href="#beranda">Kembali ke atas ↑</a>
+    </div>
+  </footer>
 
-                document.body.appendChild(confetti);
+  <div class="breadcrumb-bar" aria-label="Navigasi posisi halaman">
+    <div class="container breadcrumb-inner">
+      <span>Posisi:</span> <a href="#beranda">Home</a><span aria-hidden="true">›</span><span id="breadcrumbCurrent" aria-current="location">Beranda</span>
+      <a class="home-quick" href="#beranda" aria-label="Kembali ke beranda">⌂ Home</a>
+    </div>
+  </div>
 
-                let duration =
-                    Math.random() * 3 + 2;
+  <dialog id="foodDialog" class="food-dialog" aria-labelledby="dialogTitle">
+    <div class="dialog-header"><h2 id="dialogTitle">Detail Kuliner</h2><button id="closeDialog" class="close-button" type="button" aria-label="Tutup detail">×</button></div>
+    <div id="dialogContent"></div>
+    <div class="dialog-actions"><button id="speakDetailButton" class="button button-primary" type="button">▶ Dengarkan detail</button><a class="button button-outline" href="#lokasi" id="dialogLocationLink">Cari lokasi</a></div>
+  </dialog>
 
-                confetti.animate(
-                    [
-                        {
-                            transform:
-                                "translateY(0) rotate(0deg)"
-                        },
-                        {
-                            transform:
-                                "translateY(110vh) rotate(720deg)"
-                        }
-                    ],
-                    {
-                        duration: duration * 1000,
-                        easing: "linear"
-                    }
-                );
-
-                setTimeout(function () {
-                    confetti.remove();
-                }, duration * 1000);
-            }
-        }
-
-    </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
